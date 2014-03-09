@@ -4,12 +4,14 @@ _pathtoweapon = "admintools\weaponkits\";
 // _pathtoshields = "admintools\shields\";
 _pathtovehicles = "admintools\vehicles\";
 _pathtocrates = "admintools\crates\";
+_pathtoteleport = "admintools\teleport\";
 _EXECscript1 = 'player execVM "'+_pathtotools+'%1"';
 _EXECscript2 = 'player execVM "'+_pathtoskins+'%1"';
 _EXECscript3 = 'player execVM "'+_pathtoweapon+'%1"';
 // _EXECscript4 = 'player execVM "'+_pathtoshields+'%1"';
 _EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
 _EXECscript6 = 'player execVM "'+_pathtocrates+'%1"';
+_EXECscript7 = 'player execVM "'+_pathtoteleport+'%1"';
 // if ((getPlayerUID player) in AllAdminList) then { // All Admins
 if ((getPlayerUID player) in AdminList) then { // Admins
 	epochmenustart =
@@ -17,6 +19,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 	["",true],
 		["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"],
 		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
+		["Teleport Menu >>", [],  "#USER:TeleMenu", -5, [["expression", ""]], "1", "1"],
 		["ESP Menu >>", [],  "#USER:EspMenu", -5, [["expression", ""]], "1", "1"],			
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 		["Weapon Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
@@ -33,6 +36,7 @@ if ((getPlayerUID player) in ModList) then { // Admin Level 3
 	["",true],
 		["-- Epoch Admin Tools (Level: Mod) --", [],  "", -5, [["expression", ""]], "1", "0"],
 		["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
+		["Teleport Menu >>", [],  "#USER:TeleMenu", -5, [["expression", ""]], "1", "1"],
 		["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
@@ -42,19 +46,14 @@ if ((getPlayerUID player) in ModList) then { // Admin Level 3
 AdminMenu =
 [
 ["",true],
-	["Spectate player", [],  "", -5, [["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
-	["Teleport", [],  "", -5, [["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
-	["Teleport To Me", [], "", -5, [["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],
-	["Teleport To Player", [], "", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
+	["Spectate player", [],  "", -5, [["expression", format[_EXECscript7,"spectate.sqf"]]], "1", "1"],	
 	["Toggle God Mode", [],  "", -5, [["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
-	["Zombie Shield",[],"",-5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
-	["Toggle Flying", [],  "", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],		
-	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
-	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Heal (25m)", [],  "", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
-	["Invisibility", [],  "", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
 	["Infinite Ammo", [],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],	
 	["Toggle Grass", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
+	["Zombie Shield",[],"",-5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
+	["Heal (25m)", [],  "", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
+	["Toggle Flying", [],  "", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],
+	["Invisibility", [],  "", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -62,9 +61,6 @@ ModMenu =
 [
 ["",true],
 	["Spectate player", [],  "", -5, [["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
-	["Teleport", [],  "", -5, [["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
-	["Teleport To Me", [], "", -5, [["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],		
-	["Teleport To Player", [], "", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
 	["Toggle God Mode", [],  "", -5, [["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
 	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
@@ -285,5 +281,18 @@ VehicleTempMenu4 =
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		// ["Next page", [], "#USER:VehicleTempMenu5", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+TeleMenu =
+[
+["",true],
+	["Spectate player", [],  "", -5, [["expression", format[_EXECscript7,"spectate.sqf"]]], "1", "1"],	
+	["Teleport", [],  "", -5, [["expression", format[_EXECscript7,"malteleport.sqf"]]], "1", "1"],
+	["Teleport To Me", [], "", -5, [["expression", format[_EXECscript7, "TPtoME.sqf"]]], "1", "1"],
+	["Teleport To Player", [], "", -5, [["expression", format[_EXECscript7, "TpToPlayer.sqf"]]], "1", "1"],
+	["Teleport To Stary", [], "", -5, [["expression", format[_EXECscript7, "TptoStary.sqf"]]], "1", "1"],
+	["Teleport To Bash", [], "", -5, [["expression", format[_EXECscript7, "TpToBash.sqf"]]], "1", "1"],
+	["Teleport To Klen", [], "", -5, [["expression", format[_EXECscript7, "TpToKlen.sqf"]]], "1", "1"],
+		["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 showCommandingMenu "#USER:epochmenustart";
